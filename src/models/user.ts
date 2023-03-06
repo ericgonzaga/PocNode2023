@@ -6,4 +6,6 @@ export type User = {
     password?: string;
 };
 
-export type UserBody = Omit<User, 'id'>;
+export type UserRequest = Omit<User, 'id'>;
+
+export type UserResponse = Omit<User, 'password'>;

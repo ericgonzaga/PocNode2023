@@ -1,6 +1,7 @@
 
 export * as AuthenticationMiddleware from './authentication.middleware';
 export * as ErrorMiddleware from './errors.middleware';
-export * as ValidationsMiddleware from './validations.middleware';
+export * as ValidationMiddleware from './validation.middleware';
 
-export * from './api-error.type';
+export * from './error.types';
+export * from './validation.types';

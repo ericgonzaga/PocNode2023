@@ -17,7 +17,7 @@ server.get('/info', (req, res) => {
     return res.status(StatusCodes.OK).send(`Version ${version}`);
 });
 
-server.use('/users', usersRouter);
+server.use('/user', usersRouter);
 
 server.use(ErrorMiddleware.middleware);
 

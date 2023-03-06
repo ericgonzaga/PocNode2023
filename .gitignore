@@ -1,2 +1,6 @@
-node_modules
+coverage
 dist
+node_modules
+
+dev.db
+dev.db-journal

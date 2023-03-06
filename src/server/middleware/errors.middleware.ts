@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { ApiError } from './api-error.type';
+import { ApiError } from './errors.type';
 
 export const middleware = (
     err: Error & Partial<ApiError>,
