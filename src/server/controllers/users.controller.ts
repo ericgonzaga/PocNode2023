@@ -3,8 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import { z } from 'zod';
 
 import { UserCase } from '../../cases/users/users.case';
-import { UserRequest } from '../../models';
-import { UserPrismaRepository } from '../../repositories/user.repository';
+import { UserRequestDTO } from '../../models';
+import { UserPrismaRepository } from '../../repositories/user.prisma.repository';
 import { IFilterProps } from '../middleware';
 import { ValidationMiddleware } from '../middleware';
 import { IdSchema } from '../middleware/validation.types';
@@ -14,20 +14,20 @@ const getUC = () => {
     return new UserCase(repo);
 };
 
-export const list = (req: Request<{}, {}, {}, IFilterProps>, res: Response) => {
+export const list = async (req: Request<{}, {}, {}, IFilterProps>, res: Response) => {
     const { filter, page, limit } = req.query;
-    const list = getUC().list(filter, page, limit);
+    const list = await getUC().list(filter, page, limit);
     return res.status(StatusCodes.OK).json(list);
 };
 
-export const getById = (req: Request, res: Response) => {
-    const user = getUC().getById(req.params.id);
+export const getById = async (req: Request, res: Response) => {
+    const user = await getUC().getById(req.params.id);
     return res.status(StatusCodes.OK).json(user);
 };
 
 //==============================================================
 
-const UserBodySchema: z.ZodType<UserRequest> = z.object({
+const UserBodySchema: z.ZodType<UserRequestDTO> = z.object({
     name: z.string().min(3),
     age: z.number().min(0),
     email: z.string().email(),
@@ -36,21 +36,21 @@ const UserBodySchema: z.ZodType<UserRequest> = z.object({
 
 export const createValidator = ValidationMiddleware.validation({ body: UserBodySchema });
 
-export const create = (req: Request<{}, {}, UserRequest>, res: Response) => {
-    const user = getUC().create(req.body);
+export const create = async (req: Request<{}, {}, UserRequestDTO>, res: Response) => {
+    const user = await getUC().create(req.body);
     return res.status(StatusCodes.CREATED).send(user);
 };
 
 export const updateValidator = ValidationMiddleware.validation({ body: UserBodySchema, params: IdSchema });
 
-export const update = (req: Request<any, {}, UserRequest>, res: Response) => {
-    getUC().update(req.params.id, req.body);
+export const update = async (req: Request<any, {}, UserRequestDTO>, res: Response) => {
+    await getUC().update(req.params.id, req.body);
     return res.status(StatusCodes.OK).send();
 };
 
 //==============================================================
 
-export const deleteById = (req: Request, res: Response) => {
-    getUC().update(req.params.id, req.body);
+export const deleteById = async (req: Request, res: Response) => {
+    await getUC().update(req.params.id, req.body);
     return res.status(StatusCodes.OK).send();
 };

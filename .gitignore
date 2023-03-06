@@ -2,5 +2,7 @@ coverage
 dist
 node_modules
 
+prisma/migrations
+migrations_lock.toml
 dev.db
 dev.db-journal

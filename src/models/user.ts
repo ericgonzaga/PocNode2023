@@ -1,11 +1,12 @@
-export type User = {
+export type UserModel = {
     id: string;
     name: string;
     age: number;
     email: string;
+    active: boolean,
     password?: string;
 };
 
-export type UserRequest = Omit<User, 'id'>;
+export type UserRequestDTO = Omit<UserModel, 'id' | 'active'>;
 
-export type UserResponse = Omit<User, 'password'>;
+export type UserResponseDTO = Omit<UserModel, 'password'>;

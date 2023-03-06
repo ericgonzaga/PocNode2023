@@ -4,10 +4,12 @@
     "description": "New features POC",
     "main": "index.ts",
     "scripts": {
-        "test": "vitest",
-        "coverage": "vitest run --coverage",
         "start": "tsx watch src",
-        "prisma:migrate": "npx prisma migrate dev --name init"
+        "start:prd": "node dist/index.js",
+        "build": "tsup src",
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "prisma:migrate": "prisma migrate dev --name init"
     },
     "repository": {
         "type": "git",

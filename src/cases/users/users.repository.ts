@@ -1,10 +1,10 @@
-import { UserRequest, UserResponse } from '../../models';
+import { UserRequestDTO, UserResponseDTO } from '../../models';
 
 export interface IUsersRepository {
 
-    list(filter?: string, page?: number, limit?: number): Promise<UserResponse[]>;
-    getById(id: string): Promise<UserResponse | null>;
-    create(user: UserRequest): Promise<string>;
-    update(id: string, user: UserRequest): Promise<void>;
+    list(filter?: string, page?: number, limit?: number): Promise<UserResponseDTO[]>;
+    getById(id: string): Promise<UserResponseDTO | null>;
+    create(user: UserRequestDTO): Promise<UserResponseDTO>;
+    update(id: string, user: UserRequestDTO): Promise<void>;
     deleteById(id: string): Promise<void>;
 }
