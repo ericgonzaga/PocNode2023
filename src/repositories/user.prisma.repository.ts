@@ -3,8 +3,6 @@ import { PrismaClient } from '@prisma/client';
 import { IUsersRepository } from '../cases/users/users.repository';
 import { UserRequestDTO, UserResponseDTO } from '../models';
 
-// FIXME: corrigir o campo active.
-
 export class UserPrismaRepository implements IUsersRepository {
     private db = (new PrismaClient()).user;
 
