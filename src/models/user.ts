@@ -3,7 +3,7 @@ export type UserModel = {
     name: string;
     age: number;
     email: string;
-    active: boolean,
+    active: boolean;
     password?: string;
 };
 

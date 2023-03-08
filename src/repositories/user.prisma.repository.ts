@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 
-import { IUsersRepository } from '../cases/users/users.repository';
+import { IUsersRepository } from '../cases';
 import { UserRequestDTO, UserResponseDTO } from '../models';
 
 export class UserPrismaRepository implements IUsersRepository {
+
     private db = (new PrismaClient()).user;
 
     async list(filter = '', page = 1, limit = 100): Promise<UserResponseDTO[]> {
@@ -72,7 +73,7 @@ export class UserPrismaRepository implements IUsersRepository {
         await this.db.delete({ where: { id: id } });
     }
 
-    async login(email: string, password: string): Promise<UserResponseDTO | null> {
+    async getByEmailAndPassword(email: string, password: string): Promise<UserResponseDTO | null> {
         return await this.db.findFirst({
             select: {
                 id: true,

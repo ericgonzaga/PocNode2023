@@ -1,7 +1,7 @@
 import 'express-async-errors';
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { usersRouter } from './routers/users.router';
+import { usersRouter, loginRouter } from './routers';
 import { ErrorMiddleware } from './middleware';
 
 const server = express();
@@ -18,6 +18,7 @@ server.get('/info', (req, res) => {
 });
 
 server.use('/user', usersRouter);
+server.use('/login', loginRouter);
 
 server.use(ErrorMiddleware.middleware);
 

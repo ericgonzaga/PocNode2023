@@ -14,3 +14,9 @@ export class UserNotAuthenticatedError extends ApiError {
         super('User not authenticated', StatusCodes.UNAUTHORIZED);
     }
 }
+
+export class LoginError extends ApiError {
+    constructor() {
+        super('User/password not found', StatusCodes.NOT_FOUND);
+    }
+}

@@ -2,12 +2,10 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { z } from 'zod';
 
-import { UserCase } from '../../cases/users/users.case';
+import { UserCase } from '../../cases';
 import { UserRequestDTO } from '../../models';
-import { UserPrismaRepository } from '../../repositories/user.prisma.repository';
-import { IFilterProps } from '../middleware';
-import { ValidationMiddleware } from '../middleware';
-import { IdSchema } from '../middleware/validation.types';
+import { UserPrismaRepository } from '../../repositories';
+import { IFilterProps, IdSchema, ValidationMiddleware } from '../middleware';
 
 const getUC = () => {
     const repo = new UserPrismaRepository();

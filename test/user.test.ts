@@ -1,21 +1,43 @@
+import { randomUUID } from 'crypto';
 import { StatusCodes } from 'http-status-codes';
-import { test, expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 
-import { TOKEN_TYPE } from '../src/server/middleware/authentication.middleware';
+import { AuthenticationMiddleware } from '../src/server/middleware';
 import { testServer } from './test.setup';
 
-const token = TOKEN_TYPE + ' ' + 'akoujsrbdgfpouewbf';
+const token = AuthenticationMiddleware.TOKEN_TYPE + ' ' + 'akoujsrbdgfpouewbf';
+let userId = '';
 
-test('User created', async () => {
+describe('Create User', () => {
+    it('Default flow', async () => {
+        const randomName = randomUUID();
 
-    const sut = await testServer
-        .post('/user')
-        .set('Authorization', token)
-        .send({ name: 'Eric', age: 35, email: 'eric@test.com' });
+        const sut = await testServer
+            .post('/user')
+            .set('Authorization', token)
+            .send({ name: randomName, age: 35, email: `${randomName}@test.com` });
 
-    console.log(sut);
+        expect(sut.statusCode).toEqual(StatusCodes.CREATED);
+        expect(sut.body).toHaveProperty('id');
 
-    expect(sut.statusCode).toEqual(StatusCodes.CREATED);
-    expect(sut.body).toHaveProperty('id');
+        userId = sut.body.id;
+    });
 });
 
+describe('Select User', () => {
+    it('', async () => {
+        const sut = await testServer.get(`/user/${userId}`);
+
+        expect(sut.statusCode).toEqual(StatusCodes.OK);
+        expect(sut.body).toHaveProperty('id');
+        expect(sut.body.id).toEqual(userId);
+    });
+});
+
+describe('Delete User', () => {
+    it('Default flow', async () =>{
+        const sut = await testServer.delete(`/user/${userId}`).set('Authorization', token);
+
+        expect(sut.statusCode).toEqual(StatusCodes.OK);
+    });
+});

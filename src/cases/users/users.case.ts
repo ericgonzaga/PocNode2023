@@ -13,15 +13,19 @@ export class UserCase {
         return await this.repository.getById(id);
     }
 
-    public async create (user: Omit<UserRequestDTO, 'id'>): Promise<UserResponseDTO> {
+    public async create (user: UserRequestDTO): Promise<UserResponseDTO> {
         return await this.repository.create(user);
     }
 
-    public async update (id: string, user: Omit<UserRequestDTO, 'id'>): Promise<void> {
+    public async update (id: string, user: UserRequestDTO): Promise<void> {
         return await this.repository.update(id, user);
     }
 
     public async deleteById (id: string): Promise<void> {
         return await this.repository.deleteById(id);
+    }
+
+    public async getByEmailAndPassword(email: string, password: string): Promise<UserResponseDTO | null> {
+        return await this.repository.getByEmailAndPassword(email, password);
     }
 }
