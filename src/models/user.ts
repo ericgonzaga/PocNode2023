@@ -1,4 +1,4 @@
-export type UserModel = {
+export class UserModel {
     id: string;
     name: string;
     age: number;

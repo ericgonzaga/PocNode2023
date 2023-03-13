@@ -6,3 +6,5 @@ prisma/migrations
 migrations_lock.toml
 dev.db
 dev.db-journal
+
+schema.gql

@@ -5,7 +5,7 @@ export interface IUsersRepository {
     getById(id: string): Promise<UserResponseDTO | null>;
     getByEmailAndPassword(email: string, password: string): PromiseLike<UserResponseDTO | null>;
 
-    create(user: UserRequestDTO): Promise<UserRequestDTO>;
+    create(user: UserRequestDTO): Promise<UserResponseDTO>;
     update(id: string, user: UserRequestDTO): Promise<void>;
     deleteById(id: string): Promise<void>;
 }
