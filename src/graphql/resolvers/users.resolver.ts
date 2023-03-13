@@ -1,16 +1,18 @@
-import { randomUUID } from 'node:crypto';
 import { Length, Min } from 'class-validator';
 import { Arg, Field, InputType, Int, Mutation, ObjectType, Query, Resolver } from 'type-graphql';
+
+import { getUsersUseCase } from '../../adapters';
 
 @InputType()
 export class UserInput {
     @Field(() => String) @Length(3, 255) name: string;
     @Field(() => Int) @Min(0) age: number;
     @Field(() => String) email: string;
+    @Field(() => String, { nullable: true }) password: string;
 }
 
 @ObjectType()
-export class User {
+export class UserOutput {
     @Field(() => String) id: string;
     @Field(() => String) name: string;
     @Field(() => Int) age: number;
@@ -18,27 +20,21 @@ export class User {
     @Field(() => String) active: boolean;
 }
 
-@Resolver(User)
+@Resolver(UserOutput)
 export class UsersResolver {
 
-    _users: User[] = [];
-
-    @Query(() => [User])
+    @Query(() => [UserOutput])
     async users() {
-        return this._users;
+        return getUsersUseCase().list();
     }
 
-    @Mutation(() => User)
+    @Mutation(() => UserOutput)
     async createUser(@Arg('data', () => UserInput) data: UserInput) {
-        const user = {
-            id: randomUUID(),
+        return getUsersUseCase().create({
             name: data.name,
             age: data.age,
             email: data.email,
-            active: true
-        };
-
-        this._users.push(user);
-        return user;
+            password: data.password
+        });
     }
 }
