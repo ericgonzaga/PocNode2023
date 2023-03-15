@@ -1,5 +1,5 @@
 export type AuthenticatedUserDTO = {
-    id: string;
+    userId: string;
     token: string;
 }
 

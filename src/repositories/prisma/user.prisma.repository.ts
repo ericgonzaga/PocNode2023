@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
-import { IUsersRepository } from '../cases';
-import { UserRequestDTO, UserResponseDTO } from '../models';
+import { IUsersRepository } from '../../usecases';
+import { UserRequestDTO, UserResponseDTO } from '../../models';
 
 export class UserPrismaRepository implements IUsersRepository {
 

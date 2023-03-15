@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { z } from 'zod';
 
@@ -18,6 +18,6 @@ export const login = async (req: Request<{}, {}, LoginRequestDTO>, res: Response
     const user = await getUsersUseCase().getByEmailAndPassword(req.body.email, req.body.password);
     if (!user) throw new LoginError();
 
-    const authenticatedUser: AuthenticatedUserDTO = { id: user.id, token: JwtHelper.sign(user) };
+    const authenticatedUser: AuthenticatedUserDTO = { userId: user.id, token: JwtHelper.sign(user) };
     return res.status(StatusCodes.OK).send(authenticatedUser);
 };

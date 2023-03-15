@@ -8,6 +8,6 @@ export default defineConfig({
     },
 });
 
-// TODO: colocar o banco de teste para ser em memoria.
+// TODO: create an in-memory database to be used for tests.
 
 export const testServer = supertest(server);

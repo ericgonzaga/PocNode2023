@@ -5,7 +5,7 @@ export class UserModel {
     email: string;
     active: boolean;
     password?: string;
-};
+}
 
 export type UserRequestDTO = Omit<UserModel, 'id' | 'active'>;
 

@@ -1,7 +1,7 @@
 import { UserRequestDTO, UserResponseDTO } from '../../models';
 import { IUsersRepository } from './users.repository';
 
-export class UserCase {
+export class UserUseCase {
 
     constructor(private readonly repository: IUsersRepository) {}
 

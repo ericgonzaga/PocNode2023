@@ -15,7 +15,7 @@ export const test: RequestHandler = (req, res, next) => {
         throw new UserNotAuthenticatedError();
     }
 
-    // TODO: teste token-jwt
+    // TODO: test if token-jwt is valid
 
     return next();
 };
