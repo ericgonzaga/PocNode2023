@@ -27,11 +27,11 @@ export const validation: TValidation = (schemas) => async (req: Request, res: Re
 
         try {
             schema.parse(req[field], { abortEarly: false });
-        } catch(e) {
+        } catch (e) {
             const errors = JSON.parse(e.message);
             const validationErrors: Record<string, string> = {};
 
-            errors.forEach(obj => {
+            errors.forEach((obj) => {
                 validationErrors[obj.path[0]] = obj.message;
             });
 
@@ -39,7 +39,7 @@ export const validation: TValidation = (schemas) => async (req: Request, res: Re
         }
     });
 
-    return (Object.entries(errorsReturn).length === 0) ? next() : res.status(StatusCodes.BAD_REQUEST).json({ errors: errorsReturn });
+    return Object.entries(errorsReturn).length === 0 ? next() : res.status(StatusCodes.BAD_REQUEST).json({ errors: errorsReturn });
 };
 
 export const filterValidator = validation({ query: FilterSchema });
