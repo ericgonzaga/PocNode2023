@@ -20,18 +20,18 @@ export class UsersResolver {
         });
     }
 
-    @Mutation()
-    async updateUser(@Arg('id', () => String) id: string, @Arg('data', () => UserInput) data: UserInput) {
-        return getUsersUseCase().update(id, {
-            name: data.name,
-            age: data.age,
-            email: data.email,
-            password: data.password,
-        });
-    }
+    // @Mutation()
+    // async updateUser(@Arg('id', () => String) id: string, @Arg('data', () => UserInput) data: UserInput) {
+    //     return getUsersUseCase().update(id, {
+    //         name: data.name,
+    //         age: data.age,
+    //         email: data.email,
+    //         password: data.password,
+    //     });
+    // }
 
-    @Mutation()
-    async deleteUser(@Arg('id', () => String) id: string) {
-        return getUsersUseCase().deleteById(id);
-    }
+    // @Mutation()
+    // async deleteUser(@Arg('id', () => String) id: string) {
+    //     return getUsersUseCase().deleteById(id);
+    // }
 }
