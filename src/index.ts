@@ -1,4 +1,4 @@
-import { server } from './server';
+// import { server } from './server';
 import { bootstrap } from './graphql';
 
 import 'dotenv/config';
