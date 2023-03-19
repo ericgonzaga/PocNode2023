@@ -4,8 +4,7 @@ import { IUsersRepository } from '../../usecases';
 import { UserRequestDTO, UserResponseDTO } from '../../models';
 
 export class UserPrismaRepository implements IUsersRepository {
-
-    private db = (new PrismaClient()).user;
+    private db = new PrismaClient().user;
 
     async list(filter = '', page = 1, limit = 100): Promise<UserResponseDTO[]> {
         return await this.db.findMany({
@@ -15,7 +14,7 @@ export class UserPrismaRepository implements IUsersRepository {
                 age: true,
                 email: true,
                 active: true,
-                password: false
+                password: false,
             },
             where: {
                 OR: { name: filter, email: filter },
@@ -33,7 +32,7 @@ export class UserPrismaRepository implements IUsersRepository {
                 age: true,
                 email: true,
                 active: true,
-                password: false
+                password: false,
             },
             where: { id: id },
         });
@@ -54,7 +53,7 @@ export class UserPrismaRepository implements IUsersRepository {
                 email: true,
                 active: true,
                 password: false,
-            }
+            },
         });
     }
 
@@ -63,7 +62,7 @@ export class UserPrismaRepository implements IUsersRepository {
             data: {
                 name: user.name,
                 age: user.age,
-                email: user.email
+                email: user.email,
             },
             where: { id: id },
         });
@@ -86,7 +85,7 @@ export class UserPrismaRepository implements IUsersRepository {
             where: {
                 email: email,
                 password: password,
-                active: true
+                active: true,
             },
         });
     }

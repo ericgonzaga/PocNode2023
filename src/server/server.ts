@@ -23,4 +23,3 @@ server.use('/login', loginRouter);
 server.use(ErrorMiddleware.middleware);
 
 export { server };
-

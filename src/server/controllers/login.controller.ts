@@ -9,7 +9,7 @@ import { LoginError, ValidationMiddleware } from '../middleware';
 
 const LoginSchema: z.ZodType<LoginRequestDTO> = z.object({
     email: z.string().email(),
-    password: z.string()
+    password: z.string(),
 });
 
 export const loginValidator = ValidationMiddleware.validation({ body: LoginSchema });

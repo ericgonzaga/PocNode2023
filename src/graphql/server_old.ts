@@ -5,7 +5,7 @@ import { randomUUID } from 'node:crypto';
 
 const gqlUsers = gql`
     type User {
-        id: String!,
+        id: String!
         name: String!
     }
 
@@ -19,30 +19,31 @@ const gqlUsers = gql`
 `;
 
 type User = {
-    id: string,
-    name: string
-}
+    id: string;
+    name: string;
+};
 
 const users: User[] = [];
 
 export const graphql_server = new ApolloServer({
-    typeDefs: [ gqlUsers ],
+    typeDefs: [gqlUsers],
     resolvers: {
         Query: {
-            users: () => { return users; },
+            users: () => {
+                return users;
+            },
         },
 
         Mutation: {
             createUser: (parent, args, ctx) => {
                 const user = {
                     id: randomUUID(),
-                    name: args.name
+                    name: args.name,
                 };
 
                 users.push(user);
                 return user;
-            }
-        }
-
-    }
+            },
+        },
+    },
 });

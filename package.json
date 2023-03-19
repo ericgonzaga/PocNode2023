@@ -37,6 +37,7 @@
         "nodemon": "^2.0.21",
         "prisma": "^4.11.0",
         "supertest": "^6.3.3",
+        "tsconfig-paths": "^4.1.2",
         "tsup": "^6.6.3",
         "tsx": "^3.12.3",
         "vitest": "^0.29.2"

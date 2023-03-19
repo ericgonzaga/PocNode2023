@@ -23,7 +23,7 @@ const UserBodySchema: z.ZodType<UserRequestDTO> = z.object({
     name: z.string().min(3),
     age: z.number().min(0),
     email: z.string().email(),
-    password: z.string().optional()
+    password: z.string().optional(),
 });
 
 export const createValidator = ValidationMiddleware.validation({ body: UserBodySchema });

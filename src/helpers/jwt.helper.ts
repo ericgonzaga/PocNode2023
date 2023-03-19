@@ -14,8 +14,8 @@ export const verify = (token: string) => {
     if (!process.env.JWT_SECRET) return JWT_SECRET_NOT_FOUND_ERROR;
 
     try {
-        return (jwt.verify(token, process.env.JWT_SECRET)) as UserResponseDTO;
-    } catch(error) {
+        return jwt.verify(token, process.env.JWT_SECRET) as UserResponseDTO;
+    } catch (error) {
         return INVALID_TOKEN_ERROR;
     }
 };

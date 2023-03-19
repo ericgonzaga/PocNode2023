@@ -5,7 +5,6 @@ import { UserOutput, UserInput } from '../types';
 
 @Resolver(UserOutput)
 export class UsersResolver {
-
     @Query(() => [UserOutput])
     async users() {
         return getUsersUseCase().list();
@@ -17,7 +16,7 @@ export class UsersResolver {
             name: data.name,
             age: data.age,
             email: data.email,
-            password: data.password
+            password: data.password,
         });
     }
 
@@ -27,7 +26,7 @@ export class UsersResolver {
             name: data.name,
             age: data.age,
             email: data.email,
-            password: data.password
+            password: data.password,
         });
     }
 
