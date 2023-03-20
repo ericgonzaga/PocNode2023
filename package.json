@@ -11,7 +11,8 @@
         "test:coverage": "vitest run --coverage",
         "prisma:migrate": "prisma migrate dev --name init",
         "prisma:studio": "prisma studio",
-        "husky:prepare": "husky install"
+        "husky:install": "husky install",
+        "husky:prepare": "husky add .husky/pre-commit 'npx lint-staged'"
     },
     "repository": {
         "type": "git",

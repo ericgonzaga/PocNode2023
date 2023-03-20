@@ -16,9 +16,7 @@ export class UserPrismaRepository implements IUsersRepository {
                 active: true,
                 password: false,
             },
-            where: {
-                OR: { name: filter, email: filter },
-            },
+            where: filter != '' ? { OR: { name: { contains: filter }, email: { contains: filter } } } : { name: undefined },
             skip: (page - 1) * limit,
             take: limit,
         });

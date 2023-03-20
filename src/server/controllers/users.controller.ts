@@ -43,6 +43,6 @@ export const update = async (req: Request<any, {}, UserRequestDTO>, res: Respons
 //==============================================================
 
 export const deleteById = async (req: Request, res: Response) => {
-    await getUsersUseCase().update(req.params.id, req.body);
+    await getUsersUseCase().deleteById(req.params.id);
     return res.status(StatusCodes.OK).send();
 };

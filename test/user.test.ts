@@ -34,7 +34,6 @@ describe('Select User', () => {
     });
 });
 
-
 describe('Update User', () => {
     it('Default flow', async () => {
         const randomName = randomUUID();
@@ -49,7 +48,7 @@ describe('Update User', () => {
 });
 
 describe('Delete User', () => {
-    it('Default flow', async () =>{
+    it('Default flow', async () => {
         const sut = await testServer.delete(`/user/${userId}`).set('Authorization', token);
 
         expect(sut.statusCode).toEqual(StatusCodes.OK);
