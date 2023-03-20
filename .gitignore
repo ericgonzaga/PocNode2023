@@ -8,5 +8,3 @@ dev.db
 dev.db-journal
 
 schema.gql
-
-.husky
